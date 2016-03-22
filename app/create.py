@@ -53,8 +53,8 @@ class Handler(BaseHandler):
         # Several messages here exceed the 80-column limit because django's
         # makemessages script can't handle messages split across lines. :(
         if self.config.use_family_name:
-            if not (self.params.given_name and self.params.family_name):
-                return self.error(400, _('The Given name and Family name are both required.  Please go back and try again.'))
+            if not (self.params.given_name or self.params.family_name):
+                return self.error(400, _('The Given name or Family name are required.  Please go back and try again.'))
         else:
             if not self.params.given_name:
                 return self.error(400, _('Name is required.  Please go back and try again.'))
